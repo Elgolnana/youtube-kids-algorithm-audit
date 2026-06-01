@@ -13,6 +13,14 @@ import asyncio, json, os, re, sys
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
+# ── Groq API 키 확인 ──────────────────────────────────────────────────────────
+if not os.environ.get("GROQ_API_KEY"):
+    key = input("Groq API 키를 입력하세요: ").strip()
+    if not key:
+        print("API 키가 없으면 실행할 수 없습니다.")
+        sys.exit(1)
+    os.environ["GROQ_API_KEY"] = key
+
 # ── 경로 ─────────────────────────────────────────────────────────────────────
 SCRIPT_DIR   = Path(__file__).parent
 RESULT_DIR   = SCRIPT_DIR.parent / "실행결과"
